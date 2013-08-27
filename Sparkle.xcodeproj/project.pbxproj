@@ -133,9 +133,6 @@
 		61F83F720DBFE140006FDD30 /* SUBasicUpdateDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F83F700DBFE137006FDD30 /* SUBasicUpdateDriver.m */; };
 		61F83F740DBFE141006FDD30 /* SUBasicUpdateDriver.h in Headers */ = {isa = PBXBuildFile; fileRef = 61F83F6F0DBFE137006FDD30 /* SUBasicUpdateDriver.h */; settings = {ATTRIBUTES = (); }; };
 		61FA52880E2D9EA400EF58AD /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* Sparkle.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		93FB277A156BD80D001937C7 /* SUPasswordPrompt.h in Headers */ = {isa = PBXBuildFile; fileRef = 93FB2778156BD80D001937C7 /* SUPasswordPrompt.h */; };
-		93FB277B156BD80D001937C7 /* SUPasswordPrompt.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FB2779156BD80D001937C7 /* SUPasswordPrompt.m */; };
-		93FB277F156BD826001937C7 /* SUPasswordPrompt.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93FB277D156BD826001937C7 /* SUPasswordPrompt.xib */; };
 		8B887B611517F3AC000BB292 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B887B601517F3AC000BB292 /* Foundation.framework */; };
 		8B887B7E1517F888000BB292 /* SUXPC.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B887B7C1517F888000BB292 /* SUXPC.h */; };
 		8B887B7F1517F888000BB292 /* SUXPC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B887B7D1517F888000BB292 /* SUXPC.m */; };
@@ -150,6 +147,9 @@
 		8B887B8B1517FB52000BB292 /* SUPackageInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 618FA5210DAE8E8A0026945C /* SUPackageInstaller.m */; };
 		8B887B8C1517FB5D000BB292 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D6A5FE840307C02AAC07 /* AppKit.framework */; };
 		8B887B8E15180767000BB292 /* sandbox_service.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B887B8D15180767000BB292 /* sandbox_service.m */; };
+		93FB277A156BD80D001937C7 /* SUPasswordPrompt.h in Headers */ = {isa = PBXBuildFile; fileRef = 93FB2778156BD80D001937C7 /* SUPasswordPrompt.h */; };
+		93FB277B156BD80D001937C7 /* SUPasswordPrompt.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FB2779156BD80D001937C7 /* SUPasswordPrompt.m */; };
+		93FB277F156BD826001937C7 /* SUPasswordPrompt.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93FB277D156BD826001937C7 /* SUPasswordPrompt.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1498,7 +1498,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FA1941CA0D94A70100DD942E /* ConfigFrameworkDebug.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				COMBINE_HIDPI_IMAGES = YES;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -1506,7 +1508,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FA1941D50D94A70100DD942E /* ConfigFrameworkRelease.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				COMBINE_HIDPI_IMAGES = YES;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -1527,6 +1531,7 @@
 			baseConfigurationReference = FA1941D30D94A70100DD942E /* ConfigRelaunchDebug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1543,6 +1548,7 @@
 					AppKit,
 				);
 				PRODUCT_NAME = finish_installation;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -1551,6 +1557,7 @@
 			baseConfigurationReference = FA1941D40D94A70100DD942E /* ConfigRelaunchRelease.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1566,35 +1573,17 @@
 					AppKit,
 				);
 				PRODUCT_NAME = finish_installation;
+				SDKROOT = macosx;
 				ZERO_LINK = NO;
 			};
 			name = Release;
-		};
-		55C14BBD136EEF1500649790 /* Release (GC dual-mode; 10.5+) */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FA1941D40D94A70100DD942E /* ConfigRelaunchRelease.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = finish_installation.pch;
-				INFOPLIST_FILE = "finish_installation-Info.plist";
-				INSTALL_PATH = "$(HOME)/Applications";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
-				);
-				PRODUCT_NAME = finish_installation;
-			};
-			name = "Release (GC dual-mode; 10.5+)";
 		};
 		5D06E8D20FD68C7D005AE3F6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5D06E8F20FD68D21005AE3F6 /* ConfigBinaryDeltaDebug.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -1602,51 +1591,18 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5D06E8F30FD68D21005AE3F6 /* ConfigBinaryDeltaRelease.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				SDKROOT = macosx;
 			};
 			name = Release;
-		};
-		5D06E8D40FD68C7D005AE3F6 /* Release (GC dual-mode; 10.5+) */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5D06E8F30FD68D21005AE3F6 /* ConfigBinaryDeltaRelease.xcconfig */;
-			buildSettings = {
-			};
-			name = "Release (GC dual-mode; 10.5+)";
-		};
-		61072EAD0DF263BD008FE88B /* Release (GC dual-mode; 10.5+) */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = "Release (GC dual-mode; 10.5+)";
-		};
-		61072EAE0DF263BD008FE88B /* Release (GC dual-mode; 10.5+) */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 61072EB20DF2640C008FE88B /* ConfigFrameworkReleaseGCSupport.xcconfig */;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-			};
-			name = "Release (GC dual-mode; 10.5+)";
-		};
-		61072EAF0DF263BD008FE88B /* Release (GC dual-mode; 10.5+) */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 615409A8103BA09100125AF1 /* ConfigTestAppReleaseGCSupport.xcconfig */;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-			};
-			name = "Release (GC dual-mode; 10.5+)";
-		};
-		61072EB10DF263BD008FE88B /* Release (GC dual-mode; 10.5+) */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FA302AFD109D13190060F891 /* ConfigUnitTestReleaseGCSupport.xcconfig */;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-			};
-			name = "Release (GC dual-mode; 10.5+)";
 		};
 		612279DB0DB5470300AB99EA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FA3AAF3A1050B273004B3130 /* ConfigUnitTestDebug.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				COMBINE_HIDPI_IMAGES = YES;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -1654,7 +1610,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FA3AAF391050B273004B3130 /* ConfigUnitTestRelease.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				COMBINE_HIDPI_IMAGES = YES;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -1662,7 +1620,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FA1941CB0D94A70100DD942E /* ConfigTestAppDebug.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				COMBINE_HIDPI_IMAGES = YES;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -1670,7 +1630,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FA1941D20D94A70100DD942E /* ConfigTestAppRelease.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				COMBINE_HIDPI_IMAGES = YES;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -1678,7 +1640,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8B887B711517F447000BB292 /* ConfigServiceDebug.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				INFOPLIST_FILE = SandboxService.plist;
+				OTHER_CFLAGS = "-DDEBUG";
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -1686,17 +1651,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8B887B721517F447000BB292 /* ConfigServiceRelease.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				INFOPLIST_FILE = SandboxService.plist;
+				SDKROOT = macosx;
 			};
 			name = Release;
-		};
-		8B887B6D1517F3AC000BB292 /* Release (GC dual-mode; 10.5+) */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8B887B721517F447000BB292 /* ConfigServiceRelease.xcconfig */;
-			buildSettings = {
-				INFOPLIST_FILE = SandboxService.plist;
-			};
-			name = "Release (GC dual-mode; 10.5+)";
 		};
 /* End XCBuildConfiguration section */
 
@@ -1706,7 +1665,6 @@
 			buildConfigurations = (
 				1DEB91AE08733DA50010E9CD /* Debug */,
 				1DEB91AF08733DA50010E9CD /* Release */,
-				61072EAE0DF263BD008FE88B /* Release (GC dual-mode; 10.5+) */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1716,7 +1674,6 @@
 			buildConfigurations = (
 				1DEB91B208733DA50010E9CD /* Debug */,
 				1DEB91B308733DA50010E9CD /* Release */,
-				61072EAD0DF263BD008FE88B /* Release (GC dual-mode; 10.5+) */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1726,7 +1683,6 @@
 			buildConfigurations = (
 				55C14BBB136EEF1500649790 /* Debug */,
 				55C14BBC136EEF1500649790 /* Release */,
-				55C14BBD136EEF1500649790 /* Release (GC dual-mode; 10.5+) */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1736,7 +1692,6 @@
 			buildConfigurations = (
 				5D06E8D20FD68C7D005AE3F6 /* Debug */,
 				5D06E8D30FD68C7D005AE3F6 /* Release */,
-				5D06E8D40FD68C7D005AE3F6 /* Release (GC dual-mode; 10.5+) */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1746,7 +1701,6 @@
 			buildConfigurations = (
 				612279DB0DB5470300AB99EA /* Debug */,
 				612279DC0DB5470300AB99EA /* Release */,
-				61072EB10DF263BD008FE88B /* Release (GC dual-mode; 10.5+) */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1756,7 +1710,6 @@
 			buildConfigurations = (
 				61B5F90609C4CEE300B25A18 /* Debug */,
 				61B5F90709C4CEE300B25A18 /* Release */,
-				61072EAF0DF263BD008FE88B /* Release (GC dual-mode; 10.5+) */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1766,7 +1719,6 @@
 			buildConfigurations = (
 				8B887B6B1517F3AC000BB292 /* Debug */,
 				8B887B6C1517F3AC000BB292 /* Release */,
-				8B887B6D1517F3AC000BB292 /* Release (GC dual-mode; 10.5+) */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
