@@ -11,7 +11,7 @@
 
 #define	LONG_INSTALLATION_TIME			5				// If the Installation takes longer than this time the Application Icon is shown in the Dock so that the user has some feedback.
 #define	CHECK_FOR_PARENT_TO_QUIT_TIME	.5				// Time this app uses to recheck if the parent has already died.
-										
+
 @interface TerminationListener : NSObject
 {
 	const char		*hostpath;
@@ -43,16 +43,16 @@
 {
 	if( !(self = [super init]) )
 		return nil;
-	
+
 	hostpath		= inhostpath;
 	executablepath	= execpath;
 	parentprocessid	= ppid;
 	folderpath		= infolderpath;
 	selfPath		= [inSelfPath retain];
     shouldRelaunch  = relaunch;
-	
+
 	BOOL	alreadyTerminated = (getppid() == 1); // ppid is launchd (1) => parent terminated already
-	
+
 	if( alreadyTerminated )
 		[self parentHasQuit];
 	else
@@ -70,7 +70,7 @@
 
 	[selfPath release];
 	selfPath = nil;
-    
+
     [installationPath release];
 
 	[watchdogTimer release];
@@ -78,7 +78,7 @@
 
 	[host release];
 	host = nil;
-	
+
 	[super dealloc];
 }
 
@@ -119,6 +119,7 @@
             appPath = [[NSFileManager defaultManager] stringWithFileSystemRepresentation:executablepath length:strlen(executablepath)];
         else
             appPath = installationPath;
+
         [[NSWorkspace sharedWorkspace] openFile: appPath];
     }
 
@@ -143,7 +144,7 @@
 	NSBundle			*theBundle = [NSBundle bundleWithPath: [[NSFileManager defaultManager] stringWithFileSystemRepresentation: hostpath length:strlen(hostpath)]];
 	host = [[SUHost alloc] initWithBundle: theBundle];
     installationPath = [[host installationPath] copy];
-	
+
     // Perhaps a poor assumption but: if we're not relaunching, we assume we shouldn't be showing any UI either. Because non-relaunching installations are kicked off without any user interaction, we shouldn't be interrupting them.
     if (shouldRelaunch) {
         SUStatusController*	statusCtl = [[SUStatusController alloc] initWithHost: host];	// We quit anyway after we've installed, so leak this for now.
@@ -152,7 +153,7 @@
                         maxProgressValue: 0 statusText: @""];
         [statusCtl showWindow: self];
     }
-	
+
 	[SUInstaller installFromUpdateFolder: [[NSFileManager defaultManager] stringWithFileSystemRepresentation: folderpath length: strlen(folderpath)]
 					overHost: host
             installationPath: installationPath
@@ -179,13 +180,13 @@ int main (int argc, const char * argv[])
 {
 	if( argc < 5 || argc > 6 )
 		return EXIT_FAILURE;
-	
+
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	
+
 	//ProcessSerialNumber		psn = { 0, kCurrentProcess };
 	//TransformProcessType( &psn, kProcessTransformToForegroundApplication );
 	[[NSApplication sharedApplication] activateIgnoringOtherApps: YES];
-		
+
 	#if 0	// Cmdline tool
 	NSString*	selfPath = nil;
 	if( argv[0][0] == '/' )
@@ -198,7 +199,7 @@ int main (int argc, const char * argv[])
 	#else
 	NSString*	selfPath = [[NSBundle mainBundle] bundlePath];
 	#endif
-	
+
 	[NSApplication sharedApplication];
 	[[[TerminationListener alloc] initWithHostPath: (argc > 1) ? argv[1] : NULL
                                     executablePath: (argc > 2) ? argv[2] : NULL
@@ -207,8 +208,8 @@ int main (int argc, const char * argv[])
                                     shouldRelaunch: (argc > 5) ? atoi(argv[5]) : 1
                                           selfPath: selfPath] autorelease];
 	[[NSApplication sharedApplication] run];
-	
+
 	[pool drain];
-	
+
 	return EXIT_SUCCESS;
 }
